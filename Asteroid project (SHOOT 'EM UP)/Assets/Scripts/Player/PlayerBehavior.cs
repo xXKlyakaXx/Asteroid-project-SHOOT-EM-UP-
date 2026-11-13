@@ -25,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
+        newPos = GameManager.Instance.ClampToBounds(newPos);
         rb.MovePosition(newPos);
     }
 }

@@ -217,9 +217,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.25
     y: 0
-    width: 1
+    width: 0.5
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -344,7 +344,11 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 5746319655083704326
+    - rid: 5746319655083704326
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -404,6 +408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffee6e2635a2dec429d10fd930870662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  useCameraBounds: 1
+  paddingX: 0
+  paddingY: 5
+  minX: -6
+  maxX: 6
+  minY: -4.5
+  maxY: 4.5
 --- !u!1001 &2411070582929392114
 PrefabInstance:
   m_ObjectHideFlags: 0
