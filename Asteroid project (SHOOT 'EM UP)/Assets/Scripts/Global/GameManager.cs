@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public Vector2 ClampToBounds(Vector2 pos)
+    public Vector2 ClampToBounds(Vector2 pos, Vector2 halfExtents)
     {
         float BMinX, BMaxX, BMinY, BMaxY;
 
@@ -43,10 +43,10 @@ public class GameManager : MonoBehaviour
             Vector2 bl = cam.ViewportToWorldPoint(new Vector2(0f, 0f));
             Vector2 tr = cam.ViewportToWorldPoint(new Vector2(1f, 1f));
 
-            BMinX = bl.x + paddingX;
-            BMaxX = tr.x + paddingX;
-            BMinY = bl.y + paddingY;
-            BMaxY = tr.y + paddingY;
+            BMinX = bl.x + paddingX + halfExtents.x;
+            BMaxX = tr.x + paddingX - halfExtents.x;
+            BMinY = bl.y + paddingY + halfExtents.y;
+            BMaxY = tr.y + paddingY - halfExtents.y;
         }
         else
         {

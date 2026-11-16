@@ -9,11 +9,15 @@ public class PlayerBehavior : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private InputAction moveAction;
+    private Vector2 halfExtents;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         moveAction = InputSystem.actions.FindAction("Move");
+
+        var sr = GetComponent<SpriteRenderer>();
+        halfExtents = sr.bounds.extents;
     }
 
     void Update()
@@ -25,7 +29,7 @@ public class PlayerBehavior : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
-        newPos = GameManager.Instance.ClampToBounds(newPos);
+        newPos = GameManager.Instance.ClampToBounds(newPos, halfExtents);
         rb.MovePosition(newPos);
     }
 }
