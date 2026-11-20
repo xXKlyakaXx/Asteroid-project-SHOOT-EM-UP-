@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {  get; private set; }
-   
+    public static GameManager Instance { get; private set; }
+
+    [Header("Game Manager")]
+    public int PlayerLevel = 1;
+         
     [Header("Play Area Bounds")]
-    [Tooltip("Если включено - то границ считаются по камере. Иначе используем ручные значения.")]
+    [Tooltip("Если включено - то границ считаются по камере. Иначе используем ручные значения")]
     [SerializeField] private bool useCameraBounds = true;
     [SerializeField] private float paddingX = 0.5f;
     [SerializeField] private float paddingY = 0.5f;
 
     [Header("Manual Bounds")]
-    [Tooltip("Используем эти значения, если useCameraBound выключен.")]
-    [SerializeField] private float minX = -6f, maxX = 6f;
-    [SerializeField] private float minY = -4.5f, maxY = 4.5f;
+    [Tooltip("Используем эти значения, если useCameraBound выключен")]
+    [SerializeField] private float minX = -6f;
+    [SerializeField] private float maxX = 6f;
+    [SerializeField] private float minY = -4.5f;
+    [SerializeField] private float maxY = 4.5f;
 
     private Camera cam;
 

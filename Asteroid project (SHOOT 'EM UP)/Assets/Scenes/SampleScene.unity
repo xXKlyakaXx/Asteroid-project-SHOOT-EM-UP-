@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffee6e2635a2dec429d10fd930870662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  PlayerLevel: 1
   useCameraBounds: 1
   paddingX: 0
   paddingY: 0
@@ -463,29 +464,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1582061885816884602, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
+      propertyPath: fireIntervalLaser
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2230119916307370222, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
       propertyPath: m_Name
       value: PlayerShip
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110874378933692057, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110874378933692057, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110874378933692057, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110874378933692057, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110874378933692057, guid: 27f63b884a28ee8419114e7bb2a43547, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

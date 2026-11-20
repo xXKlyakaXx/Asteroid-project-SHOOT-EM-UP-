@@ -2,17 +2,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBehavior : MonoBehaviour
-{
-    [Header("Propeties")]
-    public int playerLevel = 1;
-
+{    
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
 
     [Header("Ammo")]
     [SerializeField] private GameObject laserPrefab; // Префаб лазера
-    [SerializeField] private Transform[] playerAmmoSpawn; // Массив точек спавна выстрелов
-    [SerializeField] private float fireIntervalLaser = 0.25f; // Скорость выстрелов лазером
+    [SerializeField] private Transform ammoSpawn1;
+    [SerializeField] private Transform ammoSpawn2;
+    [SerializeField] private Transform ammoSpawn3;
+    [SerializeField] private float fireIntervalLaser = 10f; // Скорость выстрелов лазером
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -26,34 +25,55 @@ public class PlayerBehavior : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
 
         var sr = GetComponent<SpriteRenderer>();
-        halfExtents = sr.bounds.extents;
+        halfExtents = sr.bounds.extents;        
     }
 
-    void Update()
+    private void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        moveInput = moveInput.normalized;
-
-
-        if(Time.time >= nextFireTime)
-        {
-            FireLaser();
-            nextFireTime = Time.time + fireIntervalLaser;
-        }
+        moveInput = moveInput.normalized;        
     }
 
     void FixedUpdate()
     {
-        Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
-        newPos = GameManager.Instance.ClampToBounds(newPos, halfExtents);
-        rb.MovePosition(newPos);
+        // Движение корабля игрока при нажатии на кнопки
+        Vector2 newPos = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime; // Расчет новой позиции
+        newPos = GameManager.Instance.ClampToBounds(newPos, halfExtents); // Проверяем, что не вышли за границы
+        rb.MovePosition(newPos); // Двигаемся согласно новой позиции
+
+        // Стрельба по достижению временного интервала выстрела 
+       if (Time.time >= nextFireTime)
+        {
+            FireLaser(); // Выстрел
+            nextFireTime = Time.time + fireIntervalLaser;
+        }
     }
 
+    // Метод который создаёт лазеры на сцене в spawn'ах
     private void FireLaser()        
     {
-        foreach (var spawn in playerAmmoSpawn)
+        // Берём каждую точку спавна и создаём в ней лазер
+        /*foreach (var spawn in playerAmmoSpawn)
         {
             GameObject laser = Instantiate(laserPrefab, spawn.position, spawn.rotation);
+        }*/
+        if (GameManager.Instance.PlayerLevel <= 1)
+        {
+            CreateLaser(ammoSpawn1);
+        }else if(GameManager.Instance.PlayerLevel == 2){
+            CreateLaser(ammoSpawn2); 
+            CreateLaser(ammoSpawn3);
         }
+        else if (GameManager.Instance.PlayerLevel == 3)
+        {
+            CreateLaser(ammoSpawn1);
+            CreateLaser(ammoSpawn2);
+            CreateLaser(ammoSpawn3);
+        }
+    }
+
+    private void CreateLaser(Transform ammoSpawn)
+    {
+        GameObject laser = Instantiate(laserPrefab, ammoSpawn.position, ammoSpawn.rotation);
     }
 }
