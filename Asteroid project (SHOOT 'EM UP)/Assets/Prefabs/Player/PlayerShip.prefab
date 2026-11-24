@@ -81,13 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6caccd386f89a742b3a30e75b914f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehavior
-  playerLevel: 1
   moveSpeed: 5
   laserPrefab: {fileID: 3105839165726156338, guid: 3d225fdc76de7d1479b41c17d300a43a, type: 3}
   ammoSpawn1: {fileID: 8110874378933692057}
   ammoSpawn2: {fileID: 6228106822311188050}
   ammoSpawn3: {fileID: 241711913674736779}
-  fireIntervalLaser: 25
+  fireIntervalLaser: 0.25
 --- !u!50 &1975618309671562300
 Rigidbody2D:
   serializedVersion: 5

@@ -31,7 +31,16 @@ public class PlayerBehavior : MonoBehaviour
     private void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        moveInput = moveInput.normalized;        
+        moveInput = moveInput.normalized;
+
+        if (nextFireTime >= fireIntervalLaser)
+        {
+            FireLaser();
+            nextFireTime -= fireIntervalLaser;
+        }
+
+        nextFireTime += Time.deltaTime;
+
     }
 
     void FixedUpdate()
@@ -42,11 +51,11 @@ public class PlayerBehavior : MonoBehaviour
         rb.MovePosition(newPos); // Двигаемся согласно новой позиции
 
         // Стрельба по достижению временного интервала выстрела 
-       if (Time.time >= nextFireTime)
+       /*if (Time.time >= nextFireTime)
         {
             FireLaser(); // Выстрел
             nextFireTime = Time.time + fireIntervalLaser;
-        }
+        }*/
     }
 
     // Метод который создаёт лазеры на сцене в spawn'ах
